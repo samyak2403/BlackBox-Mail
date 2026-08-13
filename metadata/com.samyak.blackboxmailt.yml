@@ -1,8 +1,16 @@
+AntiFeatures:
+  NonFreeNet:
+    en-US: >-
+      Mailboxes are provided by mail.tm, a network service that is not free
+      software. Sender logos are fetched from Google's public favicon endpoint
+      and can be turned off in Settings.
+
 Categories:
   - Email
 License: MIT
 AuthorName: Samyak Kamble
 AuthorEmail: samyakkamble6659@gmail.com
+WebSite: https://github.com/samyak2403/BlackBox-Mail
 SourceCode: https://github.com/samyak2403/BlackBox-Mail
 IssueTracker: https://github.com/samyak2403/BlackBox-Mail/issues
 Changelog: https://github.com/samyak2403/BlackBox-Mail/releases
@@ -14,7 +22,7 @@ Binaries: https://github.com/samyak2403/BlackBox-Mail/releases/download/v%v/app-
 Builds:
   - versionName: '1.0'
     versionCode: 1
-    commit: v1.0
+    commit: 254a5b9d7e8f3bafbf1bde3280be61f9ce779582
     subdir: app
     gradle:
       - yes
@@ -22,6 +30,6 @@ Builds:
 AllowedAPKSigningKeys: c5b5f7d853dc7f25f4ef8662d0315cd9f178fdb556f569a31d405162bcba17d8
 
 AutoUpdateMode: Version
-UpdateCheckMode: Tags
+UpdateCheckMode: Tags ^v[0-9.]+$
 CurrentVersion: '1.0'
 CurrentVersionCode: 1
