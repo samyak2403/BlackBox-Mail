@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Splash/window theme. Compose supplies the real Material 3 palette at runtime. -->
+    <style name="Theme.BlackBoxMail" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/gmail_surface</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+</resources>

@@ -1,0 +1,52 @@
+BlackBox Mail creates throwaway email addresses on mail.tm, so you can sign up for things and receive verification codes and confirmation links without handing over your real address.
+
+The interface follows the Gmail app closely: a pill-shaped search bar, coloured sender avatars, bold unread rows, swipe actions, a navigation drawer with unread counts, and a full reading view.
+
+No account, no registration, no API key.
+
+<b>Mailbox</b>
+
+* A random address is ready the moment you open the app
+* Or pick your own name and domain
+* Keep several mailboxes and switch between them
+* See and copy the mailbox password, so you can sign in on mail.tm itself or restore the inbox on another device
+* Copy the address with one tap, or have it copied automatically when created
+* Delete a mailbox and everything in it from the server
+
+<b>Reading</b>
+
+* Real brand logos for senders, with a coloured initial as fallback
+* HTML mail rendered properly, with JavaScript permanently disabled
+* Attachments open in whichever app handles the file type
+* Search across sender, subject and preview text
+
+<b>Organising</b>
+
+* Inbox, Starred, All mail and Trash, with unread counts
+* Swipe left and right, each bound to an action you choose
+* Multi-select with a contextual toolbar
+* Pull to refresh, plus polling on an interval you choose
+
+<b>Notifications</b>
+
+* Alerts for new mail, grouped, and tapping one opens the message
+* Background checks for when the app is closed
+* Quiet while you are already looking at the inbox
+
+<b>Settings</b>
+
+* Light, dark or system theme
+* Refresh interval, or manual only
+* Swipe bindings and an optional delete confirmation
+* Block remote images so senders cannot tell that you opened their mail
+* Turn sender logos off to skip the favicon lookup
+
+<b>Please note</b>
+
+This app receives mail only. mail.tm offers no way to send, so there is no composer.
+
+Starred, All mail and Trash are kept on the device, because mail.tm stores a single inbox. Trash is a soft delete; "Delete forever" is what actually removes a message from the server.
+
+Mailboxes are disposable and can expire. When one does, the app creates a replacement on the next launch.
+
+Email infrastructure is provided by mail.tm (https://mail.tm).

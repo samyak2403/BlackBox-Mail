@@ -1,0 +1,10 @@
+First release.
+
+* Disposable mailboxes on mail.tm, created on first launch
+* Gmail-style inbox: sender avatars, unread styling, swipe actions, drawer
+* Custom addresses, plus several mailboxes with quick switching
+* Mailbox password shown and copyable
+* HTML viewer with JavaScript disabled and optional image blocking
+* Brand logos for senders
+* New mail notifications, including background checks
+* Settings for theme, refresh interval, swipe actions and privacy

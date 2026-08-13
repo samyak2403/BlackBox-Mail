@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="gmail_surface">#FFFFFFFF</color>
+    <color name="gmail_surface_dark">#FF131314</color>
+    <color name="gmail_blue">#FF0B57D0</color>
+    <color name="gmail_red">#FFEA4335</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>
