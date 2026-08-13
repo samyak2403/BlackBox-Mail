@@ -161,7 +161,9 @@ The build is already set up for their toolchains:
 
 Two things to be aware of before submitting:
 
-- **A license is required.** Neither repository accepts an app without one. See below.
+- **Tag your releases.** The metadata at `metadata/com.samyak.blackboxmailt.yml` uses
+  `UpdateCheckMode: Tags` with a `v%v` binary URL, so each release needs a `vX.Y.Z` tag and an
+  `app-release.apk` asset attached to it.
 - **Expect the NonFreeNet anti-feature.** The app depends on mail.tm, a network service that is not
   free software, and sender logos call Google's favicon endpoint. Both are core to what the app
   does; the logo lookup at least can be turned off in Settings.
@@ -176,4 +178,4 @@ API documentation: [docs.mail.tm](https://docs.mail.tm)
 
 ## License
 
-Not yet chosen. Add a `LICENSE` file before publishing.
+MIT. See [LICENSE](LICENSE).

@@ -13,3 +13,7 @@
 .externalNativeBuild
 .cxx
 local.properties
+.kotlin
+# Signed release output. Never commit binaries: F-Droid rejects prebuilts in the source tree.
+/app/release
+/.tmp-verify
