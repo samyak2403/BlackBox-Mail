@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-   Sample data extraction rules file; uncomment and customize as necessary.
-   See https://developer.android.com/about/versions/12/backup-restore#xml-changes
-   for details.
+   Backup and device-transfer rules for API 31+.
+
+   SessionStore keeps the mail.tm mailbox passwords and the cached bearer token in the
+   "blackbox_mail_session" SharedPreferences file. Those are live credentials for a
+   disposable mailbox, so they are excluded from both cloud backup and device transfer.
 -->
 <data-extraction-rules>
     <cloud-backup>
-        <!-- TODO: Use <include> and <exclude> to control what is backed up.
-        <include .../>
-        <exclude .../>
-        -->
+        <exclude
+            domain="sharedpref"
+            path="blackbox_mail_session.xml" />
     </cloud-backup>
-    <!--
     <device-transfer>
-        <include .../>
-        <exclude .../>
+        <exclude
+            domain="sharedpref"
+            path="blackbox_mail_session.xml" />
     </device-transfer>
-    -->
 </data-extraction-rules>

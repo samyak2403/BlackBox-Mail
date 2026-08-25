@@ -61,6 +61,7 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -253,8 +254,13 @@ fun InboxScreen(
                         val leftAction = resolveAction(settings.swipeLeft, state.folder, true)
                         val starred = message.id in state.starred
 
-                        val dismissState = rememberSwipeToDismissBoxState(
-                            confirmValueChange = { value ->
+                        // rememberSwipeToDismissBoxState holds on to the very first
+                        // confirmValueChange lambda it is handed, so anything captured directly
+                        // would freeze at its first-composition value. Reading the handler
+                        // through rememberUpdatedState keeps swipe settings, the read/unread flag
+                        // and the delete-confirmation preference current for rows already on screen.
+                        val handleSwipe =
+                            rememberUpdatedState<(SwipeToDismissBoxValue) -> Boolean> { value ->
                                 val ids = setOf(message.id)
                                 val action = when (value) {
                                     SwipeToDismissBoxValue.StartToEnd -> rightAction
@@ -306,6 +312,9 @@ fun InboxScreen(
                                     }
                                 }
                             }
+
+                        val dismissState = rememberSwipeToDismissBoxState(
+                            confirmValueChange = { value -> handleSwipe.value(value) }
                         )
 
                         SwipeToDismissBox(

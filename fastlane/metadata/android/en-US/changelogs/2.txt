@@ -1,0 +1,5 @@
+Packaging release. No changes to how the app behaves.
+
+* Published under the MIT license, with F-Droid build metadata added
+* Dropped the foojay toolchain resolver so the app builds on F-Droid's buildserver
+* Dependency metadata is no longer written into the APK, keeping builds reproducible

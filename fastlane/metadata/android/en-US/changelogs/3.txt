@@ -1,0 +1,6 @@
+Privacy and reliability fixes.
+
+* Mailbox passwords and the cached login token are no longer included in Android
+  cloud backups or device-to-device transfers
+* Changing a swipe action in Settings now takes effect on messages already on screen
+* Swiping to mark read no longer acts on a stale read/unread state
