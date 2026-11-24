@@ -375,7 +375,10 @@ private fun MessageWebView(
         update = { webView ->
             webView.settings.blockNetworkImage = !loadImages
             webView.settings.loadsImagesAutomatically = loadImages
-            webView.loadDataWithBaseURL(null, document, "text/html", "UTF-8", null)
+            if (webView.tag != document) {
+                webView.tag = document
+                webView.loadDataWithBaseURL(null, document, "text/html", "UTF-8", null)
+            }
         }
     )
 }

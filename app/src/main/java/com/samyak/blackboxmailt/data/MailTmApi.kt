@@ -240,10 +240,14 @@ object MailTmApi {
     }
 
     private fun JSONObject.stringList(key: String): List<String> {
-        val array = optJSONArray(key) ?: return emptyList()
+        val array = optJSONArray(key)
+        if (array == null) {
+            val single = optString(key).orEmptyLiteral().takeIf { it.isNotBlank() }
+            return if (single != null) listOf(single) else emptyList()
+        }
         return (0 until array.length()).mapNotNull { index ->
             array.optJSONObject(index)?.optString("address")?.takeIf { it.isNotBlank() }
-                ?: array.optString(index).takeIf { it.isNotBlank() }
+                ?: array.optString(index).orEmptyLiteral().takeIf { it.isNotBlank() }
         }
     }
 

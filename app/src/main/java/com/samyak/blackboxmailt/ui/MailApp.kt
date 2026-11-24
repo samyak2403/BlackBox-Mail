@@ -182,6 +182,7 @@ fun MailApp(
     LaunchedEffect(openMessageId, state.initializing) {
         val id = openMessageId
         if (!id.isNullOrBlank() && !state.initializing) {
+            showSettings = false
             viewModel.dismissNotification(id)
             viewModel.openMessage(id)
             onOpenMessageHandled()
@@ -800,8 +801,15 @@ private suspend fun saveAndOpen(
     }
     val result = runCatching {
         val dir = File(context.cacheDir, "attachments").apply { mkdirs() }
-        val safeName = attachment.filename.replace(Regex("[^A-Za-z0-9._-]"), "_")
-        val file = File(dir, safeName.ifBlank { "attachment" })
+        val rawName = File(attachment.filename).name
+        val safeName = rawName.replace(Regex("[^A-Za-z0-9._-]"), "_")
+            .trimStart('.')
+            .ifBlank { "attachment" }
+        val uniqueName = "${attachment.id.take(8)}_$safeName"
+        val file = File(dir, uniqueName)
+        if (!file.canonicalFile.startsWith(dir.canonicalFile)) {
+            error("Invalid attachment path")
+        }
         file.writeBytes(bytes)
         FileProvider.getUriForFile(context, "${context.packageName}.fileprovider", file)
     }

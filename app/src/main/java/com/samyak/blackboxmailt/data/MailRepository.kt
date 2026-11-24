@@ -125,15 +125,28 @@ class MailRepository(context: Context) {
         if (stored != null) {
             val cachedToken = store.token
             if (!cachedToken.isNullOrBlank()) {
-                val account = runCatching { retrying { MailTmApi.me(cachedToken) } }.getOrNull()
-                if (account != null) {
+                try {
+                    val account = retrying { MailTmApi.me(cachedToken) }
                     return MailSession(cachedToken, account).also { cached = it }
+                } catch (e: ApiException) {
+                    if (e.code == 401) {
+                        store.token = null
+                    } else if (e.code == 0 || e.code >= 500 || e.code == 429) {
+                        throw e
+                    }
                 }
             }
-            val reAuthed = runCatching { authenticate(stored.address, stored.password) }.getOrNull()
-            if (reAuthed != null) return reAuthed
-            // Credentials no longer work (mailboxes expire) - drop them and start over.
-            store.removeAccount(stored.address)
+            try {
+                return authenticate(stored.address, stored.password)
+            } catch (e: ApiException) {
+                // Only drop credentials when server permanently rejects them (401/404/422).
+                // On network/server errors (0, 429, 5xx), do not delete the account!
+                if (e.code == 401 || e.code == 404 || e.code == 422) {
+                    store.removeAccount(stored.address)
+                } else {
+                    throw e
+                }
+            }
         }
         return provision(null, null)
     }

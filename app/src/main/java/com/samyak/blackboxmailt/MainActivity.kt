@@ -47,7 +47,7 @@ class MainActivity : ComponentActivity() {
             // Keep the system bar icons readable against whichever theme is active.
             val view = LocalView.current
             SideEffect {
-                val window = (view.context as Activity).window
+                val window = (view.context as? Activity)?.window ?: this@MainActivity.window
                 WindowCompat.getInsetsController(window, view).apply {
                     isAppearanceLightStatusBars = !darkTheme
                     isAppearanceLightNavigationBars = !darkTheme
